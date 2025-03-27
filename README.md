@@ -12,7 +12,7 @@
 Make sure you have the following installed before running the project:
 - Python 3.x
 - Streamlit
-- `pdf2image` for converting PDF files to images
+- `PyPDF2` for converting PDF files to text
 - `Pillow` (PIL) for image handling
 - `python-dotenv` for loading environment variables
 - `google-generativeai` for AI-based resume analysis

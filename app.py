@@ -1,9 +1,9 @@
 import os
 import io
 import base64
-import pdf2image
 from PIL import Image
 import streamlit as st
+import PyPDF2 as pdf
 from dotenv import load_dotenv
 import google.generativeai as genai 
 
@@ -13,27 +13,18 @@ genai.configure(api_key=os.getenv('GOOGLE_API_KEY'))
 
 def get_gemini_response(input, pdf_content, prompt):
     model = genai.GenerativeModel('gemini-1.5-flash')
-    response = model.generate_content([input, pdf_content[0], prompt])
+    response = model.generate_content([input, pdf_content, prompt])
     return response.text
 
 def input_pdf_setup(uploaded_file):
     if uploaded_file is not None:
-        ## Convert the PDF to image
-        images = pdf2image.convert_from_bytes(uploaded_file.read(), poppler_path="C:\\poppler\\bin")
-        
-        first_page = images[0]
-
-        # Convert to bytes
-        img_byte_arr = io.BytesIO()
-        first_page.save(img_byte_arr, format='JPEG')
-        img_byte_arr = img_byte_arr.getvalue()
-        pdf_parts = [{
-            "mime_type": "image/jpeg" ,
-            "data" : base64.b64encode(img_byte_arr).decode() # encode to base64
-        }]
-        return pdf_parts
+        reader = pdf.PdfReader(uploaded_file)
+        text = ""
+        for page in reader.pages:
+            text += str(page.extract_text())
+        return text
     else:
-        raise FileNotFoundError("No file uploaded")
+        raise FileNotFoundError('Please upload a file!')
     
 ## Streamlit Setup
 st.set_page_config(page_title='Job Fit: ATS')
@@ -71,5 +62,5 @@ if submit1 and uploaded_file is not None:
 elif submit2 and uploaded_file is not None:
     pdf_content = input_pdf_setup(uploaded_file)
     response = get_gemini_response(input_prompt2, pdf_content, input_text)
-    st.subheader('The Response is')
+    st.subheader('The Response is:')
     st.write(response)
