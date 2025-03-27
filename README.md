@@ -1,5 +1,5 @@
 # Job Fit Analyzer
-Deployed on Hucgging Face: [https://huggingface.co/spaces/surajsde/Job-Fit-Analyzer]
+Deployed on Hugging Face: [https://huggingface.co/spaces/surajsde/Job-Fit-Analyzer]
 
 **Job Fit Analyzer** is a Streamlit-based web application that uses Google's Gemini AI and an ATS (Applicant Tracking System) approach to analyze and evaluate resumes against job descriptions. The tool provides feedback on resume alignment and calculates a percentage match between the job description and the uploaded resume.
 
