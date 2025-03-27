@@ -37,14 +37,7 @@ Make sure you have the following installed before running the project:
    GOOGLE_API_KEY=your_google_api_key
    ```
 
-4. **Install Poppler (for PDF conversion)**:
-   - Windows users: Download and install Poppler from [this link](http://blog.alivate.com.au/poppler-windows/).
-   - Linux users: Use your package manager:
-     ```bash
-     sudo apt-get install poppler-utils
-     ```
-
-5. **Run the Streamlit app**:
+4. **Run the Streamlit app**:
    ```bash
    streamlit run app.py
    ```
