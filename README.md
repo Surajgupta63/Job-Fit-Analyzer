@@ -62,7 +62,7 @@ The app uses the following prompts to generate its AI responses:
 ## Technologies Used
 - **Streamlit**: Frontend UI framework for easy web app deployment.
 - **Google's Gemini AI**: AI-based text generation for resume analysis.
-- **PDF to Image Conversion**: `pdf2image` and Poppler for processing PDF resumes.
+- **PDF to Text Conversion**: `PyPDF2` for processing PDF resumes.
 - **Python Libraries**: `PIL` (image handling), `dotenv` (environment variables), `base64` (encoding).
 
 ## Contributing
